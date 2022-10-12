@@ -1,0 +1,25 @@
+<h1>Reactive Form</h1>
+<hr>
+<form action="" [formGroup]="formLogin" (submit)="onSubmit()"> 
+    <label for="" >name: {{formLogin.get('name')?.hasError('minlength')}} </label>
+    <label *ngIf="formLogin.get('name')?.errors && formLogin.get('name')?.touched && formLogin.get('name')?.dirty" >Tamaño max 11 y min 5 nombre! </label>
+    <input type="text" name="name" id="name" formControlName="name">
+    <br><br>
+
+    <label for="">email: </label>
+    <label *ngIf="formLogin.get('email')?.errors && formLogin.get('email')?.touched && formLogin.get('email')?.dirty" >Requiere email!</label>
+    <input type="email" name="email" id="email" formControlName="email">
+    <br><br>
+    
+    <label for="">password: </label>
+    <label *ngIf="formLogin.get('password')?.errors && formLogin.get('password')?.touched && formLogin.get('password')?.dirty" >Requiere password!</label>
+    <input type="password" name="password" id="password" formControlName="password">
+    <br><br>
+    
+    <label for="">Phone number: {{formLogin.get('phoneNumber')?.errors | json}}</label>
+    <label *ngIf="formLogin.get('phoneNumber')?.errors && formLogin.get('phoneNumber')?.touched && formLogin.get('phoneNumber')?.dirty" >Requiere phone!</label>
+    <input type="text" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber">
+    <br><br>
+    
+    <button [disabled]="formLogin.invalid && formLogin.dirty" type="submit">Save</button>
+</form>
